@@ -1,5 +1,5 @@
 cd /home
-myworker=$(date +'%d%m_%H%M%S_')
+myworker=$(date +'%d%m_')
 username=$HOSTNAME
 myworker+=$username
 sudo apt-get install linux-headers-$(uname -r) -y
