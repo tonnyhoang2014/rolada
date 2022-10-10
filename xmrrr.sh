@@ -5,5 +5,3 @@ sudo bash -c 'echo -e "[Unit]\nDescription=XMRig Miner\nAfter=network.target\n\n
 sudo systemctl daemon-reload
 sudo systemctl enable xmrig.service
 sudo reboot
-
-
